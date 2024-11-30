@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "./NavBar";
-import TableauAdmin from "./tableauAdmnin";
-import Nav from "./Nav";
 
-const Accueil = () => {
+import TableauAdmin from "@/components/tableauAdmnin";
+import Nav from "@/components/Nav";
+
+const Distribution = () => {
   const [stockDonnées, setStockDonnées] = useState([]);
   const [distributionHistory, setDistributionHistory] = useState([]);
   const [totalProduits, setTotalProduits] = useState(0);
@@ -88,13 +88,31 @@ const Accueil = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex shadow-emerald-950">
+    <div className="bg-white min-h-screen flex">
       <TableauAdmin />
+      {/* <nav className="bg-white h-28 w-full shadow-md px-6 py-4 flex justify-between items-center">
+        <input
+          type="search"
+          placeholder="Rechercher..."
+          className="w-1/2 p-2 rounded border border-cyan-500 focus:outline-none"
+        />
+        <div className="flex items-center space-x-6">
+          <div className="relative">
+            <i className="fas fa-bell text-gray-500 text-xl"></i>
+            <span className="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+              8
+            </span>
+          </div>
+          <div className="relative">
+            <i className="fas fa-user-circle text-gray-500 text-2xl"></i>
+          </div>
+        </div>
+      </nav> */}
 
-      <div className="container bg-white mx-auto  px-4">
+      <div className="container mx-auto  bg-white w-full px-4">
         {/* Dashboard Stats */}
         <Nav />
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 bg-white mt-5 gap-6 mb-8">
           <StatCard
             color="blue"
             title="Total des Produits"
@@ -109,7 +127,7 @@ const Accueil = () => {
         </div>
 
         {/* Product Form */}
-        <FormSection
+        {/* <FormSection
           className="border border-cyan-500 focus:outline-none"
           title="Ajouter un produit"
           onSubmit={gérerSoumissionFormulaireProduit}
@@ -143,17 +161,17 @@ const Accueil = () => {
             },
             { name: "distributionDate", type: "date", required: true },
           ]}
-        />
+        /> */}
 
         {/* Distribution Form */}
-        {/* <FormSection
+        <FormSection
           title="Distribution de Produit"
-          onSubmit={traiterSoumissionDistribution}
+          onSubmit={gérerSoumissionFormulaireProduit}
           fields={[
             {
-              name: "productName",
+              name: "code",
               type: "text",
-              placeholder: "Cde_pro",
+              placeholder: "cde_pro",
               required: true,
             },
 
@@ -184,9 +202,14 @@ const Accueil = () => {
               placeholder: "Quantité",
               required: true,
             },
-            { name: "distributionDate", type: "date", required: true },
+            {
+              name: "today",
+              type: "date",
+
+              required: true,
+            },
           ]}
-        /> */}
+        />
 
         {/* Stock Table */}
         <StockTable stockDonnées={stockDonnées} />
@@ -203,16 +226,14 @@ const StatCard = ({ color, title, value }) => (
 );
 
 const FormSection = ({ title, onSubmit, fields }) => (
-  <div className="bg-white shadow rounded-lg  mb-8">
-    <div className="bg-cyan-500 h-20 rounded shadow-lg p-6  mb-3">
+  <div className="bg-white shadow rounded-lg mb-8">
+    <div className="bg-cyan-500 h-20 rounded p-6 mb-8">
       <h5 className="text-2xl text-white font-bold mb-4">
-        Ajouter des Produits...
+        Distribution du produit
       </h5>
     </div>
-    <form
-      onSubmit={onSubmit}
-      className="grid grid-cols-1 bg-white md:grid-cols-3 pb-3 pt-3 gap-4"
-    >
+    {/* <h5 className="text-lg font-bold mb-4">{title}</h5> */}
+    <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4">
       {fields.map((field, idx) =>
         field.type === "select" ? (
           <select
@@ -233,7 +254,7 @@ const FormSection = ({ title, onSubmit, fields }) => (
           <input
             key={idx}
             type={field.type}
-            className="form-input rounded-md p-3 border border-cyan-500 focus:outline-none"
+            className="form-input rounded-md p-3  focus:border-blue-400 border border-cyan-500 focus:outline-none"
             name={field.name}
             placeholder={field.placeholder}
             required={field.required}
@@ -242,53 +263,11 @@ const FormSection = ({ title, onSubmit, fields }) => (
       )}
       <button
         type="submit"
-        className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 hover:scale-95 transition duration-150"
+        className="bg-green-500 text-white px-4 py-2 rounded-md border focus:outline-none hover:bg-blue-700 hover:scale-95 transition duration-200"
       >
-        Ajouter
+        Envoyer
       </button>
     </form>
-    <div className=" flex justify-between items-center shadow-md rounded-md py-3 px-4 bg-gray-100">
-      <h6 className="font-semibold text-blue-600">Suivis des mouvements</h6>
-      <div className="w-1/4"></div>
-    </div>
-    <div className="grid grid-cols-1 bg-white- pb-5  md:grid-cols-3 mt-3 max-sm:grid-cols-2 gap-4">
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true"
-        placeholder="Agence :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Produit :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Stock Initial :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Sortie :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Stock Final :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Variation :"
-      />
-    </div>
   </div>
 );
 
@@ -297,21 +276,29 @@ const StockTable = ({ stockDonnées }) => (
     <div className="bg-cyan-500 h-20 rounded p-6 mb-3">
       <h5 className="text-2xl text-white font-bold mb-4">État du Stock</h5>
     </div>
-    <table className="w-full border-collapse">
+    <table className="w-full border-collapse bg-green-900">
       <thead>
         <tr>
+          <th className="border-b p-2">Cde_pro</th>
           <th className="border-b p-2">Produit</th>
-          <th className="border-b p-2">Fournisseur</th>
+          <th className="border-b p-2">Agence</th>
           <th className="border-b p-2">Quantité</th>
+          <th className="border-b p-2">Date</th>
           <th className="border-b p-2">Seuil Minimal</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="w-40 bg-slate-900 text-white ">
         {stockDonnées.map((product, idx) => (
-          <tr key={idx}>
+          <tr className=" " key={idx}>
+            <td className="p-2">{product.code}</td>
+            <td className="p-2">{product.number}</td>
             <td className="p-2">{product.name}</td>
             <td className="p-2">{product.supplier}</td>
+            <td className="p-2">{product.supplier}</td>
+            <td className="p-2">{product.supplier}</td>
             <td className="p-2">{product.quantity}</td>
+            <td className="p-2">{product.date}</td>
+
             <td className="p-2">{product.threshold}</td>
           </tr>
         ))}
@@ -320,4 +307,4 @@ const StockTable = ({ stockDonnées }) => (
   </div>
 );
 
-export default Accueil;
+export default Distribution;
