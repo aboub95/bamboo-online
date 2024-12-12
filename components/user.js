@@ -37,58 +37,15 @@ export default function Clients() {
       <div className="flex w-full bg-white shadow-lg">
         {/* Main Content */}
         <div className="flex-1 bg-white w-full h-screen">
-          {/* Topbar */}
-          {/* <nav className="bg-white shadow-md py-4 px-6 flex items-center justify-between">
-            <div className="w-1/2">
-              <input
-                type="search"
-                placeholder="Search..."
-                className="w-full py-2 px-4 border border-gray-300 rounded"
-              />
-            </div>
-            <div className="flex items-center space-x-6">
-              <div className="relative">
-                <i className="fas fa-bell text-gray-500 text-lg"></i>
-                <span className="absolute top-0 right-0 translate-x-1/2 translate-y-1/2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  3
-                </span>
-              </div>
-              <div className="dropdown relative">
-                <a href="#" className="flex items-center space-x-2">
-                  <i className="fas fa-user-circle text-gray-500 text-2xl"></i>
-                </a>
-                <ul className="dropdown-menu absolute right-0 hidden bg-white shadow-lg rounded mt-2 py-2">
-                  <li>
-                    <a href="/profile" className="block px-4 py-2">
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/settings" className="block px-4 py-2">
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="my-2" />
-                  </li>
-                  <li>
-                    <a href="/logout" className="block px-4 py-2">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav> */}
-
           {/* Users Table */}
           <div className="my-6">
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-3xl font-bold text-gray-800">AGENCES</h1>
-              <button className="flex items-center bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600 hover:scale-95 transition duration-150">
-                <i className="fas fa-plus mr-2"></i>
-                Ajouter une Agence
-              </button>
+              <Link href="/creationagence">
+                <button className="flex items-center bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600 hover:scale-95 transition duration-150">
+                  Ajouter une Agence
+                </button>
+              </Link>
             </div>
 
             <div className="card shadow-md border rounded-lg">

@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { GiftTopIcon } from "@heroicons/react/24/outline";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,6 +15,7 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Bamboo",
+
   description: "Dashboard Admin De Bamboo Assure",
 };
 

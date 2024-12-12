@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "./NavBar";
+
 import TableauAdmin from "./tableauAdmnin";
 import Nav from "./Nav";
 
@@ -88,11 +88,10 @@ const Accueil = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex shadow-emerald-950">
+    <div className="bg-white min-h-screen flex shadow-emerald-950">
       <TableauAdmin />
 
       <div className="container bg-white mx-auto  px-4">
-        {/* Dashboard Stats */}
         <Nav />
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5 gap-6 mb-8">
           <StatCard
@@ -144,49 +143,6 @@ const Accueil = () => {
             { name: "distributionDate", type: "date", required: true },
           ]}
         />
-
-        {/* Distribution Form */}
-        {/* <FormSection
-          title="Distribution de Produit"
-          onSubmit={traiterSoumissionDistribution}
-          fields={[
-            {
-              name: "productName",
-              type: "text",
-              placeholder: "Cde_pro",
-              required: true,
-            },
-
-            {
-              name: "productName",
-              type: "text",
-              placeholder: "Nom du produit",
-              required: true,
-            },
-
-            {
-              name: "supplier",
-              type: "select",
-              options: [
-                "Libreville",
-                "Portgentil",
-                "Akanda",
-                "Franceville",
-                "Moanda",
-                "Lastrourville",
-              ],
-              placeholder: "Sélectionner une Agence",
-              required: true,
-            },
-            {
-              name: "quantity",
-              type: "number",
-              placeholder: "Quantité",
-              required: true,
-            },
-            { name: "distributionDate", type: "date", required: true },
-          ]}
-        /> */}
 
         {/* Stock Table */}
         <StockTable stockDonnées={stockDonnées} />

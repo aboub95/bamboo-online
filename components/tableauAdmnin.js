@@ -6,6 +6,10 @@ import {
   ArrowDownCircleIcon,
   ArrowDownIcon,
   ArrowLongLeftIcon,
+  BugAntIcon,
+  BuildingLibraryIcon,
+  BuildingOffice2Icon,
+  BuildingStorefrontIcon,
   ChartBarIcon,
   ChartBarSquareIcon,
   ChartPieIcon,
@@ -13,17 +17,24 @@ import {
   CogIcon,
   HomeIcon,
   InboxIcon,
+  PaperAirplaneIcon,
+  PaperClipIcon,
   QuestionMarkCircleIcon,
   QueueListIcon,
   RectangleGroupIcon,
+  RocketLaunchIcon,
+  SwatchIcon,
+  TableCellsIcon,
+  TruckIcon,
   UserGroupIcon,
   UserIcon,
+  UserPlusIcon,
   WrenchIcon,
 } from "@heroicons/react/24/outline";
 
 export default function TableauAdmin() {
   return (
-    <div className="" style={{ backgroundImage: `url(4)` }}>
+    <div className="max-sm:hidden" style={{ backgroundImage: `url(4)` }}>
       <section className="bg-blue-500 text-white h-screen p-6 w-64">
         {/* Je mets le logo de Bamboo assure ici */}
         <Image src="/logoBamboo.jpg" alt="logo" width={2000} height={2000} />
@@ -48,18 +59,60 @@ export default function TableauAdmin() {
             </li>
           ))}
         </ul>
+        <ul className="space-y-16 mt-8 font-bold ">
+          {[
+            {
+              href: "/distribution",
+              icon: "fa-tachometer-alt",
+              label: "Fournisseurs",
+            },
+          ].map((item, index) => (
+            <li key={index}>
+              <Link
+                href="/fournisseurs"
+                className="flex items-center space-x-3 hover:bg-blue-600 p-3 rounded"
+              >
+                <TruckIcon
+                  className={`fas ${item.icon} text-lg h-8 w-8`}
+                ></TruckIcon>
+                <span>{item.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         <ul className="space-y-16 mt-8 font-bold ">
           {[
             {
               href: "/dash",
               icon: "fa-tachometer-alt",
-              label: "AGENCES",
+              label: "Agence",
             },
           ].map((item, index) => (
             <li key={index}>
               <Link
-                href="/clientelles"
+                href="/agences"
+                className="flex items-center space-x-3 hover:bg-blue-600 p-3 rounded"
+              >
+                <BuildingOffice2Icon
+                  className={`fas ${item.icon} text-lg h-8 w-8`}
+                ></BuildingOffice2Icon>
+                <span>{item.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <ul className="space-y-16 mt-8 font-bold ">
+          {[
+            {
+              href: "/dash",
+              icon: "fa-tachometer-alt",
+              label: "Utilisateurs",
+            },
+          ].map((item, index) => (
+            <li key={index}>
+              <Link
+                href="/"
                 className="flex items-center space-x-3 hover:bg-blue-600 p-3 rounded"
               >
                 <UserGroupIcon
@@ -83,9 +136,9 @@ export default function TableauAdmin() {
                 href="/distribution"
                 className="flex items-center space-x-3 hover:bg-blue-600 p-3 rounded"
               >
-                <InboxIcon
+                <SwatchIcon
                   className={`fas ${item.icon} text-lg h-8 w-8`}
-                ></InboxIcon>
+                ></SwatchIcon>
                 <span>{item.label}</span>
               </Link>
             </li>
@@ -119,7 +172,7 @@ export default function TableauAdmin() {
             {
               href: "/distribution",
               icon: "fa-tachometer-alt",
-              label: "Analyses",
+              label: "Rapport",
             },
           ].map((item, index) => (
             <li key={index}>

@@ -5,7 +5,7 @@ import { BellIcon, StopIcon } from "@heroicons/react/24/outline";
 export default function Nav() {
   return (
     <div className="flex">
-      <nav className="bg-white h-28 w-full shadow-md px-6 py-4 flex justify-between items-center">
+      <nav className="bg-white h-28 w-full shadow-md px-6 py-4 flex justify-between items-center max-sm:hidden">
         <input
           type="search"
           placeholder="Rechercher..."
