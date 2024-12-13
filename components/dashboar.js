@@ -99,7 +99,11 @@ const Accueil = () => {
             title="Total des Produits"
             value={totalProduits}
           />
-          <StatCard color="red" title="Alertes Stock Bas" value={stockAlerts} />
+          <StatCard
+            color="yellow"
+            title="Alertes Stock Bas"
+            value={stockAlerts}
+          />
           <StatCard
             color="green"
             title="Distributions du Jour"

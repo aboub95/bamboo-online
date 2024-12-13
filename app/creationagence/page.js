@@ -7,7 +7,7 @@ export default function Agences() {
   return (
     <div
       className="flex bg-cover bg-white min-h-screen shadow-lg backdrop-blur-lg"
-      style={{ backgroundImage: `url(taf.gif)` }}
+      style={{ backgroundImage: `url(abou.gif)` }}
     >
       <TableauAdmin />
       <div className="container bg-transparent mx-auto px-4">
@@ -23,16 +23,16 @@ export default function Agences() {
           <div className="w-full md:w-2/3 mt-6 md:mt-0 md:ml-8">
             <form className="flex flex-col gap-6 items-center md:items-start">
               <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">Nom</label>
+                <label className="block text-3xl font-bold mb-2">Agence</label>
                 <input
                   type="text"
                   name="nom"
-                  placeholder="Entrez votre Nom"
+                  placeholder="Entrez le nom de l'agence..."
                   required
                   className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
                 />
               </div>
-              <div className="w-full md:w-2/3">
+              {/* <div className="w-full md:w-2/3">
                 <label className="block text-sm font-medium mb-2">Email</label>
                 <input
                   type="email"
@@ -41,8 +41,8 @@ export default function Agences() {
                   required
                   className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
                 />
-              </div>
-              <div className="w-full md:w-2/3">
+              </div> */}
+              {/* <div className="w-full md:w-2/3">
                 <label className="block text-sm font-medium mb-2">Agence</label>
                 <input
                   type="select"
@@ -51,8 +51,8 @@ export default function Agences() {
                   required
                   className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
                 />
-              </div>
-              <div className="w-full md:w-2/3">
+              </div> */}
+              {/* <div className="w-full md:w-2/3">
                 <label className="block text-sm font-medium mb-2">
                   Clé d'accès
                 </label>
@@ -63,13 +63,13 @@ export default function Agences() {
                   placeholder="Entrez votre clé d'accès"
                   className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
                 />
-              </div>
+              </div> */}
               <div className="w-full md:w-2/3">
                 <button
                   type="submit"
-                  className="bg-cyan-500 text-white rounded-md py-2 mt-4 w-full max-sm:mb-8 hover:bg-green-600 hover:scale-95 transition duration:500"
+                  className="bg-cyan-500 text-white rounded-md py-2 text-2xl mt-4 w-full max-sm:mb-8 hover:bg-green-600 hover:scale-95 transition duration:500"
                 >
-                  S'Authentifier
+                  Ajouter
                 </button>
               </div>
             </form>

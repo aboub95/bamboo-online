@@ -23,7 +23,9 @@ export default function Addfleurs() {
           <div className="w-full md:w-2/3 mt-6 md:mt-0 md:ml-8">
             <form className="flex flex-col gap-6 items-center md:items-start">
               <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">Nom</label>
+                <label className="block text-3xl font-bold mb-2">
+                  Fournisseur
+                </label>
                 <input
                   type="text"
                   name="nom"
@@ -32,44 +34,11 @@ export default function Addfleurs() {
                   className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
                 />
               </div>
-              <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
-                />
-              </div>
-              <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">
-                  Fournisseur
-                </label>
-                <input
-                  type="select"
-                  name="Fournisseur"
-                  placeholder="Entrée l'agence"
-                  required
-                  className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
-                />
-              </div>
-              {/* <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">
-                  Clé d'accès
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  required
-                  placeholder="Entrez votre clé d'accès"
-                  className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
-                />
-              </div> */}
+
               <div className="w-full md:w-2/3">
                 <button
                   type="submit"
-                  className="bg-cyan-500 text-white rounded-md py-2 mt-4 w-full max-sm:mb-8 hover:bg-green-600 hover:scale-95 transition duration:500"
+                  className="bg-cyan-500 text-white rounded-md text-2xl py-2 mt-4 w-full max-sm:mb-8 hover:bg-green-600 hover:scale-95 transition duration:500"
                 >
                   Crée
                 </button>

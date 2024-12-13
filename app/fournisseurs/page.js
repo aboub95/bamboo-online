@@ -64,19 +64,16 @@ export default function Fournisseurs() {
                         <thead>
                           <tr className="border-b">
                             <th className="px-4 py-2 text-left">Nom</th>
-                            <th className="px-4 py-2 text-left">
+                            {/* <th className="px-4 py-2 text-left">
                               Chef d'Agence
-                            </th>
-                            <th className="px-4 py-2 text-left">Role</th>
-                            <th className="px-4 py-2 text-left">Status</th>
-                            <th className="px-4 py-2 text-left">Actions</th>
+                            </th> */}
                           </tr>
                         </thead>
-                        <tbody>
+                        {/* <tbody>
                           {flseurs.map((user, index) => (
                             <tr
                               key={index}
-                              className="border-b hover:bg-gray-50"
+                              className="border-b bg-slate-500 hover:bg-gray-50"
                             >
                               <td className="px-4 py-2">
                                 <div className="flex items-center">
@@ -100,7 +97,7 @@ export default function Fournisseurs() {
                                 <span
                                   className={`inline-block w-2.5 h-2.5 rounded-full mr-2 ${
                                     user.status === "Active"
-                                      ? "bg-green-500"
+                                      ? "bg-green-700"
                                       : "bg-gray-500"
                                   }`}
                                 ></span>
@@ -116,13 +113,13 @@ export default function Fournisseurs() {
                               </td>
                             </tr>
                           ))}
-                        </tbody>
+                        </tbody> */}
                       </table>
                     </div>
 
                     {/* Je mets uen Pagination ici pour voir les différentes Agences  */}
-                    <div className="mt-4">
-                      <ul className="flex justify-end space-x-2">
+                    <div className="mt-4 bg-green-400 h-7 w-full">
+                      {/* <ul className="flex justify-end space-x-2">
                         <li>
                           <button className="px-4 py-2 bg-gray-200 rounded-l-lg">
                             Revenir
@@ -144,7 +141,7 @@ export default function Fournisseurs() {
                             Suivant
                           </button>
                         </li>
-                      </ul>
+                      </ul> */}
                     </div>
                   </div>
                 </div>
