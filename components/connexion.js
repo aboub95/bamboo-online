@@ -26,8 +26,14 @@ export default function Connexion() {
   };
 
   return (
-    <div className="min-h-screen grid place-items-center bg-gradient-to-br bg-cyan-600 p-4">
-      <div className="bg-white rounded-xl overflow-hidden w-full max-w-4xl h-auto flex shadow-lg">
+    <div
+      className="h-screen w-full  grid place-items-center bg-gradient-to-br bg-cyan-600 p-4 bg-cover"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(59, 89, 152, 0.85), rgba(59, 89, 152, 0.85)), url('/abou.gif')",
+      }}
+    >
+      <div className="bg-white rounded-xl  overflow-hidden w-full  max-w-4xl lg:h-4/6 flex shadow-lg">
         {/* Left Side */}
         <div
           className="bg-cover bg-center text-white p-8 w-1/2"
@@ -36,18 +42,18 @@ export default function Connexion() {
               "linear-gradient(rgba(59, 89, 152, 0.85), rgba(59, 89, 152, 0.85)), url('/admin.jpg')",
           }}
         >
-          <h1 className="text-4xl font-bold leading-tight mb-4">
+          <h1 className="text-4xl max-sm:text-xl font-bold leading-tight mb-4 md:mt-40 max-sm:mt-28">
             Bienvenu sur votre
             <br />
             Dashboard.
           </h1>
-          <p className="opacity-90 mb-6">
+          <p className="opacity-90 mb-6 max-sm:text-xl max-sm:hidden">
             Notre dashboar Administrateur pour la gestion et le suivis des
             activités.
           </p>
-          <div>Média sociaux de connexion</div>
-          <div className="flex gap-4 mt-4">
-            <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-full text-white hover:opacity-90">
+
+          <div className="flex gap-4 mt-4 max-sm:flex-col">
+            <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 md:ml-14 max-sm:text-xs max-sm:h-8 max-sm:w-20 max-sm:flex justify-center rounded-full text-white hover:opacity-90">
               <svg
                 width="20"
                 height="20"
@@ -58,7 +64,7 @@ export default function Connexion() {
               </svg>
               Facebook
             </button>
-            <button className="flex items-center gap-2 px-6 py-3 bg-blue-400 rounded-full text-white hover:opacity-90">
+            <button className="flex items-center gap-2 px-6 py-3 bg-blue-400 rounded-full  max-sm:text-xs max-sm:h-8 max-sm:w-20 max-sm:flex justify-center text-white hover:opacity-90">
               <svg
                 width="20"
                 height="20"
@@ -73,9 +79,9 @@ export default function Connexion() {
         </div>
 
         {/* Right Side */}
-        <div className="p-8 w-1/2">
+        <div className="p-8 w-1/2 md:mt-40 max-sm:mt-28 lg:mt-16">
           <h2 className="text-2xl font-bold mb-4">Login</h2>
-          <p className="mb-6">
+          <p className="mb-6 max-sm:hidden">
             Entrez vos information
             <br />
             <a href="/signup" className="text-purple-700 hover:underline">
@@ -83,47 +89,51 @@ export default function Connexion() {
             </a>
           </p>
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-4 max-sm:text-xs max-sm:h-8 max-sm:w-20 max-sm:flex justify-center">
               <input
                 type="text"
                 name="username"
-                placeholder="M.OBIANG MBA"
+                placeholder="Veillez entrez votre identfiant..."
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className="w-full max-sm:w-32 max-sm:ml-3 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 max-sm:text-xs max-sm:h-8 max-sm:w-20 max-sm:flex justify-center">
               <input
                 type="password"
                 name="password"
-                placeholder="••••••••"
+                placeholder="Entrez votre mot de passe..."
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className="w-full p-3 border max-sm:w-32 max-sm:ml-3 rounded-md focus:outline-none focus:ring-2  focus:ring-cyan-500"
               />
             </div>
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-6 max-sm:text-xs max-sm:h-8 max-sm:w-20 max-sm:flex-col max-sm:justify-center">
               <label className="flex items-center">
                 <input
                   type="checkbox"
                   name="rememberMe"
                   checked={formData.rememberMe}
                   onChange={handleChange}
-                  className="mr-2"
+                  className="mr-2 "
                 />
-                Se souvenir de moi
+                <span className="max-sm:w-28 ">Se souvenir de moi</span>
               </label>
-              <Link href="/" className="text-purple-700 hover:underline">
+              <Link
+                href="/"
+                className="text-purple-700 hover:underline max-sm:w-28 max-sm:mt-3 max-sm:ml-5"
+              >
                 Mot de passe oublier
               </Link>
             </div>
             <Link href="/accueil">
               <button
                 type="submit"
-                className="w-full p-3 bg-green-500 text-white rounded-full hover:bg-green-600"
+                className="w-40 p-3 bg-green-500 text-white rounded-full hover:bg-cyan-500 max-sm:h-8 max-sm:w-24 text-center
+                 max-sm:flex max-sm:p-0 max-sm:items-center max-sm:text-xs"
               >
-                Se connecter
+                <span className="ml-3">Se connecter</span>
               </button>
             </Link>
           </form>

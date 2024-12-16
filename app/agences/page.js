@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Clients from "@/components/user";
+import Clients from "@/components/agences";
 import TableauAdmin from "@/components/tableauAdmnin";
 
 export default function Agences() {

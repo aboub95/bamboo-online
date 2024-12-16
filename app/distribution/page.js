@@ -90,29 +90,9 @@ const Distribution = () => {
   return (
     <div className="bg-white min-h-screen flex">
       <TableauAdmin />
-      {/* <nav className="bg-white h-28 w-full shadow-md px-6 py-4 flex justify-between items-center">
-        <input
-          type="search"
-          placeholder="Rechercher..."
-          className="w-1/2 p-2 rounded border border-cyan-500 focus:outline-none"
-        />
-        <div className="flex items-center space-x-6">
-          <div className="relative">
-            <i className="fas fa-bell text-gray-500 text-xl"></i>
-            <span className="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-              8
-            </span>
-          </div>
-          <div className="relative">
-            <i className="fas fa-user-circle text-gray-500 text-2xl"></i>
-          </div>
-        </div>
-      </nav> */}
-
-      <div className="container mx-auto  bg-white w-full px-4">
-        {/* Dashboard Stats */}
+      <div className="container mx-auto   w-full px-4">
         <Nav />
-        <div className="grid grid-cols-1 md:grid-cols-3 bg-white mt-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 bg-white mt-5 max-sm:mt-24 p-1 gap-6 mb-8">
           <StatCard
             color="blue"
             title="Total des Produits"
@@ -226,9 +206,9 @@ const StatCard = ({ color, title, value }) => (
 );
 
 const FormSection = ({ title, onSubmit, fields }) => (
-  <div className="bg-white shadow rounded-lg mb-8">
+  <div className="bg-white shadow rounded-lg p-1 mb-8">
     <div className="bg-cyan-500 h-20 rounded p-6 mb-8">
-      <h5 className="text-2xl text-white font-bold mb-4">
+      <h5 className="text-2xl max-sm:text-xl max-sm:text-wrap text-white font-bold mb-4">
         Distribution du produit
       </h5>
     </div>
@@ -273,12 +253,14 @@ const FormSection = ({ title, onSubmit, fields }) => (
 
 const StockTable = ({ stockDonnées }) => (
   <div className="bg-white shadow rounded-lg">
-    <div className="bg-cyan-500 h-20 rounded p-6 mb-3">
-      <h5 className="text-2xl text-white font-bold mb-4">État du Stock</h5>
+    <div className="bg-cyan-500 h-20 max-sm:h-10 rounded p-6 max-sm:p-0 mb-3">
+      <h5 className="text-2xl max-sm:text-xl max-sm:ml-12 max-sm:p-1 text-white font-bold mb-4">
+        État du Stock
+      </h5>
     </div>
-    <table className="w-full border-collapse bg-green-900">
+    <table className="w-full border-collapse bg-green-900 ">
       <thead>
-        <tr>
+        <tr className="grid grid-cols-1 md:grid-cols-3">
           <th className="border-b p-2">Cde_pro</th>
           <th className="border-b p-2">Produit</th>
           <th className="border-b p-2">Agence</th>

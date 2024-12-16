@@ -11,6 +11,7 @@ export default function Nav() {
           placeholder="Rechercher..."
           className="w-1/2 p-2 rounded border border-cyan-500 focus:outline-none"
         />
+
         <div className="flex items-center space-x-6">
           <div className="relative h-10 w-16">
             <BellIcon className="fas fa-bell text-blue-600 text-xl h-8 w-8 bg-bue-"></BellIcon>

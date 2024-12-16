@@ -32,38 +32,7 @@ export default function Agences() {
                   className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
                 />
               </div>
-              {/* <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
-                />
-              </div> */}
-              {/* <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">Agence</label>
-                <input
-                  type="select"
-                  name="Agence"
-                  placeholder="Entrée votre agence"
-                  required
-                  className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
-                />
-              </div> */}
-              {/* <div className="w-full md:w-2/3">
-                <label className="block text-sm font-medium mb-2">
-                  Clé d'accès
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  required
-                  placeholder="Entrez votre clé d'accès"
-                  className="w-full border border-cyan-500 focus:border-cyan-400 outline-none rounded-md px-3 py-2"
-                />
-              </div> */}
+
               <div className="w-full md:w-2/3">
                 <button
                   type="submit"

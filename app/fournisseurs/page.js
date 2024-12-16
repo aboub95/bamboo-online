@@ -4,56 +4,65 @@ import TableauAdmin from "@/components/tableauAdmnin";
 import Nav from "@/components/Nav";
 
 export default function Fournisseurs() {
-  const flseurs = [
-    {
-      name: "John Doe",
-      email: "john@example.com",
-      role: "Admin",
-      status: "Active",
-    },
-    {
-      name: "Jane Smith",
-      email: "jane@example.com",
-      role: "Editor",
-      status: "Active",
-    },
-    {
-      name: "Mike Johnson",
-      email: "mike@example.com",
-      role: "User",
-      status: "Inactive",
-    },
-    {
-      name: "Mike Abou",
-      email: "mike@example.com",
-      role: "User",
-      status: "Active",
-    },
-  ];
+  // const flseurs = [
+  //   {
+  //     name: "John Doe",
+  //     email: "john@example.com",
+  //     role: "Admin",
+  //     status: "Active",
+  //   },
+  //   {
+  //     name: "Jane Smith",
+  //     email: "jane@example.com",
+  //     role: "Editor",
+  //     status: "Active",
+  //   },
+  //   {
+  //     name: "Mike Johnson",
+  //     email: "mike@example.com",
+  //     role: "User",
+  //     status: "Inactive",
+  //   },
+  //   {
+  //     name: "Mike Abou",
+  //     email: "mike@example.com",
+  //     role: "User",
+  //     status: "Active",
+  //   },
+  // ];
 
   return (
     <div className="flex">
       <TableauAdmin />
       <div className="container bg-slate-50 mx-auto p-4">
         <Nav />
-        <div className="flex w-full shadow-lg mt-10">
+        <div className="flex w-full shadow-lg mt-10 max-sm:mt-24">
           <div className="flex w-full bg-white shadow-lg">
             {/* Main Content */}
-            <div className="flex-1 bg-white w-full h-screen">
+            <div className="flex-1 w-full h-screen">
               {/* Users Table */}
               <div className="my-6">
                 <div className="flex justify-between items-center mb-4">
-                  <h1 className="text-3xl font-bold text-gray-800 p-6">
+                  <h1 className="text-3xl max-sm:text-xl font-bold text-gray-800 p-6">
                     Fournisseurs
                   </h1>
-                  <Link href="/inscrit">
-                    <button className="flex items-center bg-green-500 text-white py-3 px-5 mr-5 rounded hover:bg-blue-600 hover:scale-95 transition duration-150">
+                  <Link className="max-sm:hidden" href="/inscrit">
+                    <button className="flex items-center bg-green-500 text-white py-3 px-5 mr-5 max-sm:w-18 rounded hover:bg-blue-600 hover:scale-95 transition duration-150">
                       Ajouter un Fournisseur
                     </button>
                   </Link>
+                  <Link className="md:sm:hidden" href="/inscrit">
+                    <Image
+                      src="/add.png"
+                      alt="add"
+                      width={40}
+                      height={40}
+                      className="md:sm:hidden"
+                    />
+                  </Link>
                 </div>
 
-                <div className="card shadow-md border rounded-lg">
+                <div className="card shadow-md border rounded-lg max-sm:mt-5">
                   <div className="card-header flex justify-between items-center py-3 px-4 bg-gray-100">
                     <h6 className="font-semibold text-blue-600">Libreville</h6>
                     <div className="w-1/4"></div>

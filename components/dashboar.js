@@ -93,7 +93,7 @@ const Accueil = () => {
 
       <div className="container bg-white mx-auto  px-4">
         <Nav />
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 max-sm:mt-20 mt-5 gap-6 mb-8">
           <StatCard
             color="blue"
             title="Total des Produits"
@@ -157,15 +157,15 @@ const Accueil = () => {
 
 const StatCard = ({ color, title, value }) => (
   <div className={`bg-${color}-500 text-white p-4 rounded-lg shadow`}>
-    <h6>{title}</h6>
-    <h2 className="text-2xl font-bold">{value}</h2>
+    <h6 className="">{title}</h6>
+    <h2 className="text-xl font-bold">{value}</h2>
   </div>
 );
 
 const FormSection = ({ title, onSubmit, fields }) => (
   <div className="bg-white shadow rounded-lg  mb-8">
     <div className="bg-cyan-500 h-20 rounded shadow-lg p-6  mb-3">
-      <h5 className="text-2xl text-white font-bold mb-4">
+      <h5 className="text-2xl max-sm:text-xl text-white font-bold mb-4">
         Ajouter des Produits...
       </h5>
     </div>

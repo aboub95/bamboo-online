@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "./Nav";
 
 export default function Clients() {
   // États pour gérer les données des agences, le chargement et les erreurs
   const [agences, setAgences] = useState([]);
   const [chargement, setChargement] = useState(true);
-  const [error, setError] = useState(null);
+  const [erreur, setErreur] = useState(null);
 
   // Fonction pour récupérer les données de l'API
   useEffect(() => {
@@ -16,34 +17,45 @@ export default function Clients() {
       try {
         const response = await fetch(
           "https://jsonplaceholder.typicode.com/posts/"
-        ); // URL mise à jour pour renvoyer un tableau
+        );
         if (!response.ok) {
           throw new Error(`Erreur: ${response.status}`);
         }
         const data = await response.json();
-        setAgences(data); // Mise à jour de l'état avec les données reçues
+        setAgences(data); // Mise à jour de l'état avec les données que vais reçevoir de l'API de Marvin.
       } catch (err) {
-        setError(err.message); // Capture des erreurs
+        setErreur(err.message); // Capture des erreurs
       } finally {
-        setChargement(false); // Fin du chargement
+        setChargement(false); // Le chargement des Agences prend fin ici.
       }
     }
 
     fetchAgences();
-  }, []); // Exécuter une seule fois au montage du composant
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 shadow-lg bg-white">
+    <div className="container mx-auto px-4 shadow-lg">
       <Nav />
-      <div className="flex w-full bg-white shadow-lg">
+      <div className="flex w-full max-sm:mt-24  bg-white shadow-lg">
         <div className="flex-1 bg-white w-full h-screen">
           <div className="my-6">
             <div className="flex justify-between items-center mb-4">
-              <h1 className="text-3xl font-bold text-gray-800">AGENCES</h1>
+              <h1 className="text-3xl font-bold max-sm:text-xl ml-4 text-gray-800">
+                Agences
+              </h1>
               <Link href="/creationagence">
-                <button className="flex items-center bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600 hover:scale-95 transition duration-150">
+                <button className="flex items-center bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600 hover:scale-95 transition duration-150 max-sm:hidden">
                   Ajouter une Agence
                 </button>
+              </Link>
+              <Link className="md:sm:hidden" href="/creationagence">
+                <Image
+                  src="/add.png"
+                  alt="add"
+                  width={40}
+                  height={40}
+                  className="md:sm:hidden"
+                />
               </Link>
             </div>
 
@@ -57,8 +69,8 @@ export default function Clients() {
                 <div className="overflow-x-auto">
                   {chargement ? (
                     <p>Chargement des agences...</p>
-                  ) : error ? (
-                    <p className="text-red-500">Erreur: {error}</p>
+                  ) : erreur ? (
+                    <p className="text-red-500">Erreur: {erreur}</p>
                   ) : (
                     <table className="table-auto w-full border-collapse">
                       <thead>
