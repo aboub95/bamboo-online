@@ -41,7 +41,7 @@ export default function Rapport() {
                 </Link>
               </div>
               
-              {/* Filtres */}
+              
               <div className="mb-6">
                 <label className="block text-gray-700 font-semibold mb-2">Filtrer par :</label>
                 <select
@@ -55,7 +55,7 @@ export default function Rapport() {
                 </select>
               </div>
               
-              {/* Tableau des données */}
+          
               <div className="card shadow-md border rounded-lg p-4 mb-6">
                 <table className="table-auto w-full border-collapse">
                   <thead>
@@ -77,7 +77,7 @@ export default function Rapport() {
                 </table>
               </div>
               
-              {/* Graphique */}
+          
               <div className="mb-6">
                 <Chart
                   chartType="LineChart"
@@ -87,8 +87,7 @@ export default function Rapport() {
                   options={options}
                 />
               </div>
-              
-              {/* Boutons Exportation */}
+        
               <div className="flex space-x-4">
                 <button className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
                   <ArrowDownTrayIcon className="h-5 w-5 mr-2" /> Exporter en PDF
