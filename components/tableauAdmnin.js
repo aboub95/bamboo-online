@@ -22,10 +22,13 @@ export default function TableauAdmin() {
     { href: "/accueil", label: "Accueil", icon: HomeIcon },
     { href: "/fournisseurs", label: "Fournisseurs", icon: TruckIcon },
     { href: "/agences", label: "Agence", icon: BuildingOffice2Icon },
-    { href: "/", label: "Utilisateurs", icon: UserGroupIcon },
+    { href: "/utilisateur", label: "Utilisateurs", icon: UserGroupIcon },
     { href: "/distribution", label: "Distribution", icon: SwatchIcon },
     { href: "/produits", label: "Produits", icon: RectangleGroupIcon },
+    { href: "/categorie", label: "categorie", icon: RectangleGroupIcon },
+    { href: "/stock", label: "stock", icon: UserGroupIcon },
     { href: "/rapports", label: "Rapport", icon: ChartPieIcon },
+
   ];
 
   const renderMenu = (items) => (
@@ -51,7 +54,7 @@ export default function TableauAdmin() {
     >
       {/* Version Desktop  */}
 
-      <section className="bg-blue-500 text-white h-screen p-6 w-64  max-sm:hidden">
+      <section className="bg-blue-500  text-white h-full p-6 w-64  max-sm:hidden">
         <Image src="/logoBamboo.jpg" alt="logo" width={200} height={200} />
         {renderMenu(menuItems)}
         <Link

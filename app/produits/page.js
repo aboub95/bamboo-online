@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import TableauAdmin from "@/components/tableauAdmnin";
 import Nav from "@/components/Nav";
 import { useState } from "react";
@@ -33,72 +32,64 @@ export default function Produit() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen bg-gray-100">
       <TableauAdmin />
-      <div className="container bg-slate-50 mx-auto p-4">
+      <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg">
         <Nav />
-        <div className="flex w-full shadow-lg mt-10 max-sm:mt-24">
-          <div className="flex w-full bg-white shadow-lg">
-            <div className="flex-1 w-full h-screen">
-              <div className="my-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h1 className="text-3xl max-sm:text-xl font-bold text-gray-800 p-6">
-                    Listes de produits
-                  </h1>
-                  <Link href="/inscrit">
-                    <button className="flex items-center bg-green-500 text-white py-3 px-5 mr-5 max-sm:w-18 rounded hover:bg-blue-600 hover:scale-95 transition duration-150">
-                      Ajouter un produit
-                    </button>
-                  </Link>
-                </div>
+        <div className="mt-10 max-sm:mt-24">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h1 className="text-3xl font-bold text-gray-800">Liste des produits</h1>
+              <Link href="/inscrit">
+                <button className="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition">
+                  Ajouter un produit
+                </button>
+              </Link>
+            </div>
 
-                <div className="card shadow-md border rounded-lg max-sm:mt-5">
-                  <div className="card-header flex justify-between items-center py-3 px-4 bg-gray-100">
-                    <h6 className="font-semibold text-blue-600">Produits</h6>
-                  </div>
-                  <div className="p-4">
-                    <div className="overflow-x-auto">
-                      <table className="table-auto w-full border-collapse">
-                        <thead>
-                          <tr className="border-b">
-                            <th className="px-4 py-2 text-left">Nom</th>
-                            <th className="px-4 py-2 text-left">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {products.map((product) => (
-                            <tr
-                              key={product.id}
-                              className="border-b hover:bg-gray-50"
-                            >
-                              <td className="px-4 py-2">{product.name}</td>
-                              <td className="px-4 py-2">
-                                <button
-                                  className="text-blue-600 hover:text-blue-800 mr-2"
-                                  onClick={() => handleEdit(product.id)}
-                                >
-                                  <PencilIcon className="h-5 w-5" />
-                                </button>
-                                <button
-                                  className="text-red-600 hover:text-red-800"
-                                  onClick={() => handleDelete(product.id)}
-                                >
-                                  <TrashIcon className="h-5 w-5" />
-                                </button>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+            <div className="shadow-md border rounded-lg overflow-hidden">
+              <div className="py-4 px-6 bg-gray-100 border-b">
+                <h6 className="font-semibold text-blue-600">Produits</h6>
+              </div>
+              <div className="p-6 overflow-x-auto">
+                <table className="w-full border-collapse table-auto text-left">
+                  <thead className="bg-gray-200 text-gray-700">
+                    <tr>
+                      <th className="px-6 py-3 text-lg">Nom</th>
+                      <th className="px-6 py-3 text-lg text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {products.map((product, index) => (
+                      <tr
+                        key={product.id}
+                        className={`border-b ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
+                      >
+                        <td className="px-6 py-4 text-md">{product.name}</td>
+                        <td className="px-6 py-4 flex justify-center space-x-6">
+                          <button
+                            className="text-blue-600 hover:text-blue-800"
+                            onClick={() => handleEdit(product.id)}
+                          >
+                            <PencilIcon className="h-6 w-6" />
+                          </button>
+                          <button
+                            className="text-red-600 hover:text-red-800"
+                            onClick={() => handleDelete(product.id)}
+                          >
+                            <TrashIcon className="h-6 w-6" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-                    <div className="mt-4 flex justify-end">
-                      <span className="text-sm text-gray-500">
-                        {products.length} produit(s)
-                      </span>
-                    </div>
-                  </div>
-                </div>
+              <div className="p-6 flex justify-end border-t bg-gray-50">
+                <span className="text-md text-gray-500">
+                  {products.length} produit(s)
+                </span>
               </div>
             </div>
           </div>
