@@ -1,283 +1,476 @@
+// "use client";
+
+// import React from "react";
+// import TableauAdmin from "./tableauAdmnin";
+// import Nav from "./Nav";
+
+// const Home = () => {
+//   return (
+//     <div className="bg-white min-h-screen flex shadow-emerald-950 ">
+//       {/* Section TableauAdmin */}
+      
+//       <TableauAdmin />
+
+//       <div className="min-h-screen bg-gray-100 flex flex-col w-full">
+//         {/* Barre de navigation */}
+//         <Nav />
+
+//         {/* En-tête */}
+//         <header className="bg-blue-400 h-20 text-white py-4">
+//           <div className="container mx-auto text-center text-2xl font-semibold">
+//             Bamboo Assur - Gestion de Stock
+//           </div>
+//         </header>
+
+//         {/* Contenu principal */}
+//         <main className="container mx-auto p-4">
+//           {/* Section des statistiques */}
+//           <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+//             {["Total des Produits", "Alertes Stock Bas", "Distributions du Jour"].map(
+//               (title, index) => (
+//                 <div
+//                   key={index}
+//                   className="bg-blue-400 rounded-lg shadow-md p-4 flex flex-col items-center"
+//                 >
+//                   <h3 className="text-white text-sm font-medium">{title}</h3>
+//                   <p className="text-3xl font-bold text-white">0</p>
+//                 </div>
+//               )
+//             )}
+//           </section>
+
+//           {/* Suivi hebdomadaire des mouvements */}
+//           <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+//             <h2 className="text-gray-800 font-semibold text-lg mb-4">
+//               Suivi Hebdomadaire des Mouvements
+//             </h2>
+//             <div className="flex flex-wrap items-center gap-4 mb-4">
+//               <select className="flex-1 border rounded-lg p-2">
+//                 <option>Sélectionner un produit</option>
+//                 <option>Livre</option>
+//                 <option>cahier</option>
+//                 <option>sacs</option>
+//                 <option>stylo</option>
+//               </select>
+//               <input
+//                 type="number"
+//                 placeholder="Quantité"
+//                 className="flex-1 border rounded-lg p-2"
+//               />
+//               <input
+//                 type="date"
+//                 className="flex-1 border rounded-lg p-2"
+//               />
+//               <button className="bg-green-500 text-white rounded-lg px-4 py-2">
+//                 Ajouter Entrée
+//               </button>
+//             </div>
+//             <table className="w-full border-collapse border border-gray-200">
+//               <thead className="bg-gray-100">
+//                 <tr>
+//                   {[
+//                     "Agence",
+//                     "Produit",
+//                     "Stock Initial",
+//                     "Entrées",
+//                     "Sorties",
+//                     "Stock Final",
+//                     "Variation",
+//                   ].map((header, index) => (
+//                     <th
+//                       key={index}
+//                       className="border border-gray-200 px-4 py-2 text-left"
+//                     >
+//                       {header}
+//                     </th>
+//                   ))}
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr>
+//                   {Array(7)
+//                     .fill(" ")
+//                     .map((_, index) => (
+//                       <td
+//                         key={index}
+//                         className="border border-gray-200 px-4 py-2"
+//                       >
+//                         -
+//                       </td>
+//                     ))}
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </section>
+
+//           {/* Saisie des produits */}
+//           <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+//             <h2 className="text-gray-800 font-semibold text-lg mb-4">
+//               Saisie des Produits
+//             </h2>
+//             <div className="flex items-center gap-4">
+//               <input
+//                 type="text"
+//                 placeholder="Nom du produit"
+//                 className="flex-1 border rounded-lg p-2"
+//               />
+//               <select className="flex-1 border rounded-lg p-2">
+//                 <option>Sélectionner un fournisseur</option>
+//                 <option>fournisseur1</option>
+//                 <option>fournisseur2</option>
+//                 <option>fournisseur3</option>
+//                 <option>fournisseur4</option>
+//               </select>
+//               <input
+//                 type="number"
+//                 placeholder="Quantité"
+//                 className="flex-1 border rounded-lg p-2"
+//               />
+//               <button className="bg-blue-500 text-white rounded-lg px-4 py-2">
+//                 +
+//               </button>
+//             </div>
+//           </section>
+
+//           {/* Distribution des produits */}
+//           <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+//             <h2 className="text-gray-800 font-semibold text-lg mb-4">
+//               Distribution des Produits
+//             </h2>
+//             <div className="flex flex-wrap items-center gap-4">
+//               <select className="flex-1 border rounded-lg p-2">
+//                 <option>Sélectionner une agence</option>*
+//                 <option>Agence Libreville</option>
+//                 <option>Agence Port-gentil</option>
+//               </select>
+//               <select className="flex-1 border rounded-lg p-2">
+//                 <option>Sélectionner un produit</option>
+//                 <option>Sélectionner un produit</option>
+//                 <option>Livre</option>
+//                 <option>cahier</option>
+//                 <option>sacs</option>
+//                 <option>stylo</option>
+//               </select>
+//               <input
+//                 type="number"
+//                 placeholder="Quantité"
+//                 className="flex-1 border rounded-lg p-2"
+//               />
+//               <input
+//                 type="date"
+//                 className="flex-1 border rounded-lg p-2"
+//               />
+//               <button className="bg-blue-500 text-white rounded-lg px-4 py-2">
+//                 Envoyer
+//               </button>
+//             </div>
+//           </section>
+
+//           {/* État du stock */}
+//           <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+//             <h2 className="text-gray-800 font-semibold text-lg mb-4">
+//               État du Stock
+//             </h2>
+//             <table className="w-full border-collapse border border-gray-200">
+//               <thead className="bg-gray-100">
+//                 <tr>
+//                   {["Produit", "Fournisseur", "Quantité", "Seuil Minimal"].map(
+//                     (header, index) => (
+//                       <th
+//                         key={index}
+//                         className="border border-gray-200 px-4 py-2 text-left"
+//                       >
+//                         {header}
+//                       </th>
+//                     )
+//                   )}
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr>
+//                   {Array(4)
+//                     .fill(" ")
+//                     .map((_, index) => (
+//                       <td
+//                         key={index}
+//                         className="border border-gray-200 px-4 py-2"
+//                       >
+//                         -
+//                       </td>
+//                     ))}
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </section>
+
+//           {/* Historique des distributions */}
+//           <section className="bg-white rounded-lg shadow-md p-4">
+//             <h2 className="text-gray-800 font-semibold text-lg mb-4">
+//               Historique des Distributions
+//             </h2>
+//             <table className="w-full border-collapse border border-gray-200">
+//               <thead className="bg-gray-100">
+//                 <tr>
+//                   {["Date", "Agence", "Produit", "Quantité"].map(
+//                     (header, index) => (
+//                       <th
+//                         key={index}
+//                         className="border border-gray-200 px-4 py-2 text-left"
+//                       >
+//                         {header}
+//                       </th>
+//                     )
+//                   )}
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr>
+//                   {Array(4)
+//                     .fill(" ")
+//                     .map((_, index) => (
+//                       <td
+//                         key={index}
+//                         className="border border-gray-200 px-4 py-2"
+//                       >
+//                         -
+//                       </td>
+//                     ))}
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </section>
+//         </main>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Home;
 "use client";
 
 import React, { useState } from "react";
-
 import TableauAdmin from "./tableauAdmnin";
 import Nav from "./Nav";
 
-const Accueil = () => {
-  const [stockDonnées, setStockDonnées] = useState([]);
-  const [distributionHistory, setDistributionHistory] = useState([]);
-  const [totalProduits, setTotalProduits] = useState(0);
-  const [stockAlerts, setStockAlerts] = useState(0);
-  const [distributionsProduits, setDistributionsProduits] = useState(0);
-  const minimumProduits = 10;
+const Home = () => {
+  // États pour stocker les données
+  const [stock, setStock] = useState([]);
+  const [distributions, setDistributions] = useState([]);
+  const [mouvements, setMouvements] = useState([]);
 
-  const gérerSoumissionFormulaireProduit = (e) => {
+  // Gestion de la saisie des produits
+  const handleProductEntry = (e) => {
     e.preventDefault();
-    const produitNom = e.target.productName.value;
-    const supplier = e.target.supplier.value;
-    const quantity = parseInt(e.target.quantity.value, 10);
-
-    const nouveauProduit = {
-      name: produitNom,
-      supplier,
-      quantity,
-      threshold: minimumProduits,
-    };
-
-    const nouveauStock = [...stockDonnées, nouveauProduit];
-    setStockDonnées(nouveauStock);
-    e.target.reset();
-    updateDashboardStats(nouveauStock, distributionHistory);
-  };
-
-  const traiterSoumissionDistribution = (e) => {
-    e.preventDefault();
-    const agency = e.target.agency.value;
-    const productName = e.target.productName.value;
-    const quantity = parseInt(e.target.quantity.value, 10);
-    const date = e.target.distributionDate.value;
-
-    const productIndex = stockDonnées.findIndex((p) => p.name === productName);
-
-    if (
-      productIndex !== -1 &&
-      stockDonnées[productIndex].quantity >= quantity
-    ) {
-      const updatedStock = [...stockDonnées];
-      updatedStock[productIndex].quantity -= quantity;
-
-      const nouvelleDistribution = {
-        date,
-        agency,
-        product: productName,
-        quantity,
-      };
-
-      setStockDonnées(updatedStock);
-      setDistributionHistory((prevHistory) => [
-        ...prevHistory,
-        nouvelleDistribution,
-      ]);
-
-      updateDashboardStats(updatedStock, [
-        ...distributionHistory,
-        nouvelleDistribution,
-      ]);
-    } else {
-      alert("Stock insuffisant !");
-    }
-
-    if (!produitNom || !supplier || isNaN(quantity) || quantity <= 0) {
-      alert("Veuillez remplir tous les champs correctement.");
-      return;
+    const form = e.target;
+    const nom = form.nom.value;
+    const fournisseur = form.fournisseur.value;
+    const quantite = parseInt(form.quantite.value, 10);
+    
+    if (nom && fournisseur && quantite > 0) {
+      setStock([...stock, { nom, fournisseur, quantite, seuil: 10 }]);
+      form.reset();
     }
   };
 
-  const updateDashboardStats = (updatedStock, updatedHistory) => {
-    setTotalProduits(updatedStock.length);
-    setStockAlerts(
-      updatedStock.filter((p) => p.quantity <= p.threshold).length
-    );
+  // Gestion de la distribution des produits
+  const handleDistribution = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const agence = form.agence.value;
+    const produit = form.produit.value;
+    const quantite = parseInt(form.quantite.value, 10);
+    const date = form.date.value;
 
-    const today = new Date().toISOString().split("T")[0];
-    setDistributionsProduits(
-      updatedHistory.filter((d) => d.date === today).length
-    );
+    if (agence && produit && quantite > 0 && date) {
+      setDistributions([...distributions, { date, agence, produit, quantite }]);
+      setMouvements([...mouvements, { agence, produit, quantite, type: "sortie" }]);
+      
+      // Mise à jour du stock
+      setStock(stock.map(item => item.nom === produit ? { ...item, quantite: item.quantite - quantite } : item));
+      form.reset();
+    }
   };
 
   return (
     <div className="bg-white min-h-screen flex shadow-emerald-950">
       <TableauAdmin />
-
-      <div className="container bg-white mx-auto  px-4">
+      <div className="min-h-screen bg-gray-100 flex flex-col w-full">
         <Nav />
-        <div className="grid grid-cols-1 md:grid-cols-3 max-sm:mt-20 mt-5 gap-6 mb-8">
-          <StatCard
-            color="blue"
-            title="Total des Produits"
-            value={totalProduits}
-          />
-          <StatCard
-            color="yellow"
-            title="Alertes Stock Bas"
-            value={stockAlerts}
-          />
-          <StatCard
-            color="green"
-            title="Distributions du Jour"
-            value={distributionsProduits}
-          />
-        </div>
+        <header className="bg-blue-400 h-20 text-white py-4">
+          <div className="container mx-auto text-center text-2xl font-semibold">
+            Bamboo Assur - Gestion de Stock
+          </div>
+        </header>
 
-        {/* Product Form */}
-        <FormSection
-          className="border border-cyan-500 focus:outline-none"
-          title="Ajouter un produit"
-          onSubmit={gérerSoumissionFormulaireProduit}
-          fields={[
-            {
-              name: "productName",
-              type: "text",
-              placeholder: "cde_pro",
-              required: true,
-            },
+         {/* Contenu principal */}
+{/* //         <main className="container mx-auto p-4"> */}
+           {/* Section des statistiques */}
+           <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 mt-5">
+             {["Total des Produits", "Alertes Stock Bas", "Distributions du Jour"].map(
+              (title, index) => (
+                <div
+                  key={index}
+                  className="bg-blue-400 rounded-lg shadow-md p-4 flex flex-col items-center"
+                >
+                  <h3 className="text-white text-sm font-medium">{title}</h3>
+                  <p className="text-3xl font-bold text-white">0</p>
+                </div>
+              )
+            )}
+          </section>
 
-            {
-              name: "productName",
-              type: "text",
-              placeholder: "Nom du produit",
-              required: true,
-            },
+        {/* Suivi hebdomadaire des mouvements */}
+           <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+             <h2 className="text-gray-800 font-semibold text-lg mb-4">
+               Suivi Hebdomadaire des Mouvements
+             </h2>
+             <div className="flex flex-wrap items-center gap-4 mb-4">
+               <select className="flex-1 border rounded-lg p-2">
+                 <option>Sélectionner un produit</option>
+                 <option>Livre</option>
+                 <option>cahier</option>
+                 <option>sacs</option>
+                 <option>stylo</option>
+              </select>
+              <input
+                type="number"
+                placeholder="Quantité"
+                className="flex-1 border rounded-lg p-2"
+              />
+              <input
+                type="date"
+                className="flex-1 border rounded-lg p-2"
+              />
+              <button className="bg-green-500 text-white rounded-lg px-4 py-2">
+                Ajouter Entrée
+              </button>
+            </div>
+            <table className="w-full border-collapse border border-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  {[
+                    "Agence",
+                    "Produit",
+                    "Stock Initial",
+                    "Entrées",
+                    "Sorties",
+                    "Stock Final",
+                    "Variation",
+                  ].map((header, index) => (
+                    <th
+                      key={index}
+                      className="border border-gray-200 px-4 py-2 text-left"
+                    >
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {Array(7)
+                    .fill(" ")
+                    .map((_, index) => (
+                      <td
+                        key={index}
+                        className="border border-gray-200 px-4 py-2"
+                      >
+                        -
+                      </td>
+                    ))}
+                </tr>
+              </tbody>
+            </table>
+          </section>
 
-            {
-              name: "supplier",
-              type: "select",
-              options: ["AXA", "SUNU", "SANLAM", "OGAR", "ASSINCO", "NSIA"],
-              placeholder: "Sélectionner un fournisseur",
-              required: true,
-            },
-            {
-              name: "quantity",
-              type: "number",
-              placeholder: "Quantité",
-              required: true,
-            },
-            { name: "distributionDate", type: "date", required: true },
-          ]}
-        />
+        <main className="container mx-auto p-4">
+          {/* Saisie des produits */}
+          <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+            <h2 className="text-gray-800 font-semibold text-lg mb-4">Saisie des Produits</h2>
+            <form onSubmit={handleProductEntry} className="flex items-center gap-4">
+              <input name="nom" type="text" placeholder="Nom du produit" className="flex-1 border rounded-lg p-2" required />
+              <select name="fournisseur" className="flex-1 border rounded-lg p-2" required>
+                <option>Sélectionner un fournisseur</option>
+                <option>fournisseur1</option>
+                <option>fournisseur2</option>
+              </select>
+              <input name="quantite" type="number" placeholder="Quantité" className="flex-1 border rounded-lg p-2" required />
+              <button type="submit" className="bg-blue-500 text-white rounded-lg px-4 py-2">+</button>
+            </form>
+          </section>
 
-        {/* Stock Table */}
-        <StockTable stockDonnées={stockDonnées} />
+          {/* Distribution des produits */}
+          <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+            <h2 className="text-gray-800 font-semibold text-lg mb-4">Distribution des Produits</h2>
+            <form onSubmit={handleDistribution} className="flex flex-wrap items-center gap-4">
+              <select name="agence" className="flex-1 border rounded-lg p-2" required>
+                <option>Sélectionner une agence</option>
+                <option>Agence Libreville</option>
+                <option>Agence Port-Gentil</option>
+              </select>
+              <select name="produit" className="flex-1 border rounded-lg p-2" required>
+                <option>Sélectionner un produit</option>
+                {stock.map((item, index) => <option key={index} value={item.nom}>{item.nom}</option>)}
+              </select>
+              <input name="quantite" type="number" placeholder="Quantité" className="flex-1 border rounded-lg p-2" required />
+              <input name="date" type="date" className="flex-1 border rounded-lg p-2" required />
+              <button type="submit" className="bg-blue-500 text-white rounded-lg px-4 py-2">Envoyer</button>
+            </form>
+          </section>
+
+          {/* État du stock */}
+          <section className="bg-white rounded-lg shadow-md p-4 mb-8">
+            <h2 className="text-gray-800 font-semibold text-lg mb-4">État du Stock</h2>
+            <table className="w-full border-collapse border border-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border px-4 py-2">Produit</th>
+                  <th className="border px-4 py-2">Fournisseur</th>
+                  <th className="border px-4 py-2">Quantité</th>
+                  <th className="border px-4 py-2">Seuil Minimal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stock.map((item, index) => (
+                  <tr key={index}>
+                    <td className="border px-4 py-2">{item.nom}</td>
+                    <td className="border px-4 py-2">{item.fournisseur}</td>
+                    <td className="border px-4 py-2">{item.quantite}</td>
+                    <td className="border px-4 py-2">{item.seuil}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          {/* Historique des distributions */}
+          <section className="bg-white rounded-lg shadow-md p-4">
+            <h2 className="text-gray-800 font-semibold text-lg mb-4">Historique des Distributions</h2>
+            <table className="w-full border-collapse border border-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border px-4 py-2">Date</th>
+                  <th className="border px-4 py-2">Agence</th>
+                  <th className="border px-4 py-2">Produit</th>
+                  <th className="border px-4 py-2">Quantité</th>
+                </tr>
+              </thead>
+              <tbody>
+                {distributions.map((item, index) => (
+                  <tr key={index}>
+                    <td className="border px-4 py-2">{item.date}</td>
+                    <td className="border px-4 py-2">{item.agence}</td>
+                    <td className="border px-4 py-2">{item.produit}</td>
+                    <td className="border px-4 py-2">{item.quantite}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </main>
       </div>
     </div>
   );
 };
 
-const StatCard = ({ color, title, value }) => (
-  <div className={`bg-${color}-500 text-white p-4 rounded-lg shadow`}>
-    <h6 className="">{title}</h6>
-    <h2 className="text-xl font-bold">{value}</h2>
-  </div>
-);
-
-const FormSection = ({ title, onSubmit, fields }) => (
-  <div className="bg-white shadow rounded-lg  mb-8">
-    <div className="bg-cyan-500 h-20 rounded shadow-lg p-6  mb-3">
-      <h5 className="text-2xl max-sm:text-xl text-white font-bold mb-4">
-        Ajouter des Produits...
-      </h5>
-    </div>
-    <form
-      onSubmit={onSubmit}
-      className="grid grid-cols-1 bg-white md:grid-cols-3 pb-3 pt-3 gap-4"
-    >
-      {fields.map((field, idx) =>
-        field.type === "select" ? (
-          <select
-            key={idx}
-            className="form-select rounded-md p-3 border focus:border-blue-400"
-            name={field.name}
-            required={field.required}
-          >
-            <option value="">{field.placeholder}</option>
-            {Array.isArray(field.options) &&
-              field.options.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-          </select>
-        ) : (
-          <input
-            key={idx}
-            type={field.type}
-            className="form-input rounded-md p-3 border border-cyan-500 focus:outline-none"
-            name={field.name}
-            placeholder={field.placeholder}
-            required={field.required}
-          />
-        )
-      )}
-      <button
-        type="submit"
-        className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 hover:scale-95 transition duration-150"
-      >
-        Ajouter
-      </button>
-    </form>
-    <div className=" flex justify-between items-center shadow-md rounded-md py-3 px-4 bg-gray-100">
-      <h6 className="font-semibold text-blue-600">Suivis des mouvements</h6>
-      <div className="w-1/4"></div>
-    </div>
-    <div className="grid grid-cols-1 bg-white- pb-5  md:grid-cols-3 mt-3 max-sm:grid-cols-2 gap-4">
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true"
-        placeholder="Agence :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Produit :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Stock Initial :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Sortie :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Stock Final :"
-      />
-      <input
-        className=" border border-cyan-500 focus:outline-none p-5 rounded-lg font-extrabold "
-        type="text"
-        required="true w-40"
-        placeholder="Variation :"
-      />
-    </div>
-  </div>
-);
-
-const StockTable = ({ stockDonnées }) => (
-  <div className="bg-white shadow rounded-lg">
-    <div className="bg-cyan-500 h-20 rounded p-6 mb-3">
-      <h5 className="text-2xl text-white font-bold mb-4">État du Stock</h5>
-    </div>
-    <table className="w-full border-collapse">
-      <thead>
-        <tr>
-          <th className="border-b p-2">Produit</th>
-          <th className="border-b p-2">Fournisseur</th>
-          <th className="border-b p-2">Quantité</th>
-          <th className="border-b p-2">Seuil Minimal</th>
-        </tr>
-      </thead>
-      <tbody>
-        {stockDonnées.map((product, idx) => (
-          <tr key={idx}>
-            <td className="p-2">{product.name}</td>
-            <td className="p-2">{product.supplier}</td>
-            <td className="p-2">{product.quantity}</td>
-            <td className="p-2">{product.threshold}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
-
-export default Accueil;
+export default Home;
