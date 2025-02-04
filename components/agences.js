@@ -22,11 +22,11 @@ export default function Clients() {
           throw new Error(`Erreur: ${response.status}`);
         }
         const data = await response.json();
-        setAgences(data); // Mise à jour de l'état avec les données que vais reçevoir de l'API de Marvin.
+        setAgences(data); 
       } catch (err) {
-        setErreur(err.message); // Capture des erreurs
+        setErreur(err.message);s
       } finally {
-        setChargement(false); // Le chargement des Agences prend fin ici.
+        setChargement(false); 
       }
     }
 
@@ -94,7 +94,7 @@ export default function Clients() {
                   )}
                 </div>
 
-                {/* Pagination ou autres actions ici */}
+              
                 <div className="mt-4"></div>
               </div>
             </div>
