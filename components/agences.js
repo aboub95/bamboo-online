@@ -94,7 +94,7 @@ export default function Clients() {
                   )}
                 </div>
 
-                {/* Pagination ou autres actions ici */}
+                
                 <div className="mt-4"></div>
               </div>
             </div>
