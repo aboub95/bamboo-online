@@ -24,34 +24,39 @@ export default function Connexion() {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-300 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-center mb-6">Connexion</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="h-screen flex flex-col items-center justify-center bg-blue-400 p-4">
+      <h1 className="text-3xl font-bold text-white mb-8">
+        Bienvenue sur votre Dashboard
+      </h1>
+      <div className="bg-white p-10 rounded-xl shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+          Connexion
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-gray-700">Identifiant</label>
+            <label className="block text-gray-700 font-medium">Identifiant</label>
             <input
               type="text"
               name="username"
               placeholder="Entrez votre identifiant"
               value={formData.username}
               onChange={handleChange}
-              className="w-full p-2 border rounded-md focus:ring-2 focus:ring-cyan-500"
+              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label className="block text-gray-700">Mot de passe</label>
+            <label className="block text-gray-700 font-medium">Mot de passe</label>
             <input
               type="password"
               name="password"
               placeholder="Entrez votre mot de passe"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-2 border rounded-md focus:ring-2 focus:ring-cyan-500"
+              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="flex items-center justify-between">
-            <label className="flex items-center text-gray-700">
+            <label className="flex items-center text-gray-700 font-medium">
               <input
                 type="checkbox"
                 name="rememberMe"
@@ -61,13 +66,13 @@ export default function Connexion() {
               />
               Se souvenir de moi
             </label>
-            <Link href="/" className="text-cyan-600 hover:underline">
+            <Link href="/" className="text-blue-600 hover:underline">
               Mot de passe oublié ?
             </Link>
           </div>
           <button
             type="submit"
-            className="w-full p-2 bg-cyan-600 text-white rounded-md hover:bg-cyan-700"
+            className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-lg"
           >
             Se connecter
           </button>
