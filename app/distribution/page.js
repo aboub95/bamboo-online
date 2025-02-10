@@ -12,33 +12,57 @@ const Distribution = () => {
   const [distributionsProduits, setDistributionsProduits] = useState(0);
   const minimumProduits = 10;
 
-  const gérerSoumissionFormulaireProduit = (e) => {
+  const gérerSoumissionFormulaireProduit = async (e) => {
     e.preventDefault();
-    const produitNom = e.target.productName.value;
-    const supplier = e.target.supplier.value;
-    const quantity = parseInt(e.target.quantity.value, 10);
+    const codeProduit = e.target.code_produit.value;
+    const produitId = e.target.produit.value;
+    const quantite = parseInt(e.target.quantite.value, 10);
+    const fournisseurId = e.target.fournisseur.value;
+    const distribueA = e.target.distribue_a.value;
+    const date = e.target.date.value;
 
-    if (!produitNom || !supplier || isNaN(quantity) || quantity <= 0) {
+    if (!codeProduit || !produitId || isNaN(quantite) || quantite <= 0 || !fournisseurId || !distribueA || !date) {
       alert("Veuillez remplir tous les champs correctement.");
       return;
     }
 
     const nouveauProduit = {
-      name: produitNom,
-      supplier,
-      quantity,
+      code_produit: codeProduit,
+      produit: produitId,
+      quantite,
+      fournisseur: fournisseurId,
+      distribue_a: distribueA,
+      date,
       threshold: minimumProduits,
     };
 
-    const nouveauStock = [...stockDonnées, nouveauProduit];
-    setStockDonnées(nouveauStock);
-    e.target.reset();
-    updateDashboardStats(nouveauStock, distributionHistory);
+    try {
+      const response = await fetch("https://backend-soutenance-1.onrender.com/distribuer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nouveauProduit),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi des données au serveur.");
+      }
+
+      const data = await response.json();
+      const nouveauStock = [...stockDonnées, data];
+      setStockDonnées(nouveauStock);
+      e.target.reset();
+      updateDashboardStats(nouveauStock, distributionHistory);
+    } catch (error) {
+      console.error("Erreur:", error);
+      alert("Échec de l'envoi des données. Veuillez réessayer.");
+    }
   };
 
   const updateDashboardStats = (updatedStock, updatedHistory) => {
     setTotalProduits(updatedStock.length);
-    setStockAlerts(updatedStock.filter((p) => p.quantity <= p.threshold).length);
+    setStockAlerts(updatedStock.filter((p) => p.quantite <= p.threshold).length);
 
     const today = new Date().toISOString().split("T")[0];
     setDistributionsProduits(updatedHistory.filter((d) => d.date === today).length);
@@ -56,9 +80,11 @@ const Distribution = () => {
         </div>
 
         <FormSection title="Distribution de Produit" onSubmit={gérerSoumissionFormulaireProduit} fields={[
-          { name: "productName", type: "text", placeholder: "Nom du produit", required: true },
-          { name: "supplier", type: "select", options: ["Libreville", "Port-Gentil", "Akanda"], placeholder: "Sélectionner une Agence", required: true },
-          { name: "quantity", type: "number", placeholder: "Quantité", required: true },
+          { name: "code_produit", type: "text", placeholder: "Code du produit", required: true },
+          { name: "produit", type: "text", placeholder: "produit", required: true },
+          { name: "quantite", type: "number", placeholder: "Quantité", required: true },
+          { name: "fournisseur", type: "text", placeholder: "fournisseur", required: true },
+          { name: "distribue_a", type: "text", placeholder: "destinataire", required: true },
           { name: "date", type: "date", required: true },
         ]} />
 
@@ -69,7 +95,7 @@ const Distribution = () => {
 };
 
 const StatCard = ({ title, value, color }) => (
-  <div className={`${color} text-white p-6 rounded-lg shadow-md`}> 
+  <div className={`${color} text-white p-6 rounded-lg shadow-md`}>
     <h6 className="text-lg font-semibold">{title}</h6>
     <h2 className="text-2xl font-bold">{value}</h2>
   </div>
@@ -79,19 +105,19 @@ const FormSection = ({ title, onSubmit, fields }) => (
   <div className="bg-white shadow rounded-lg p-6 mb-8">
     <h5 className="text-xl font-bold mb-4">{title}</h5>
     <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4">
-      {fields.map((field, idx) =>
-        field.type === "select" ? (
-          <select key={idx} className="form-select p-3 border rounded-md" name={field.name} required={field.required}>
-            <option value="">{field.placeholder}</option>
-            {field.options.map((option, index) => (
-              <option key={index} value={option}>{option}</option>
-            ))}
-          </select>
-        ) : (
-          <input key={idx} type={field.type} className="form-input p-3 border rounded-md" name={field.name} placeholder={field.placeholder} required={field.required} />
-        )
-      )}
-      <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">Envoyer</button>
+      {fields.map((field, idx) => (
+        <input
+          key={idx}
+          type={field.type}
+          className="form-input p-3 border rounded-md"
+          name={field.name}
+          placeholder={field.placeholder}
+          required={field.required}
+        />
+      ))}
+      <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">
+        Envoyer
+      </button>
     </form>
   </div>
 );
@@ -102,9 +128,11 @@ const StockTable = ({ stockDonnées }) => (
     <table className="w-full border-collapse">
       <thead>
         <tr className="bg-gray-200 text-gray-700">
+          <th className="p-3 text-left">Code Produit</th>
           <th className="p-3 text-left">Produit</th>
-          <th className="p-3 text-left">Agence</th>
           <th className="p-3 text-left">Quantité</th>
+          <th className="p-3 text-left">Fournisseur</th>
+          <th className="p-3 text-left">Destinataire</th>
           <th className="p-3 text-left">Date</th>
           <th className="p-3 text-left">Seuil Minimal</th>
         </tr>
@@ -112,9 +140,11 @@ const StockTable = ({ stockDonnées }) => (
       <tbody>
         {stockDonnées.map((product, idx) => (
           <tr key={idx} className="border-b hover:bg-gray-100">
-            <td className="p-3">{product.name}</td>
-            <td className="p-3">{product.supplier}</td>
-            <td className="p-3">{product.quantity}</td>
+            <td className="p-3">{product.code_produit}</td>
+            <td className="p-3">{product.produit}</td>
+            <td className="p-3">{product.quantite}</td>
+            <td className="p-3">{product.fournisseur}</td>
+            <td className="p-3">{product.distribue_a}</td>
             <td className="p-3">{product.date}</td>
             <td className="p-3">{product.threshold}</td>
           </tr>
