@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Import du router pour la redirection
 import Link from "next/link";
 
 export default function Connexion() {
@@ -10,9 +11,45 @@ export default function Connexion() {
     rememberMe: false,
   });
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter(); // Initialisation du router
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("https://backend-soutenance-1.onrender.com/users/Login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur de connexion. Veuillez vérifier vos identifiants.");
+      }
+
+      const data = await response.json();
+      console.log("Connexion réussie :", data);
+
+      // Stockage du token dans localStorage
+      localStorage.setItem('token', data.token);
+
+      // Redirection vers la page d'accueil
+      router.push('/accueil');  // Assure-toi que la page /accueil existe dans ton projet
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -32,6 +69,7 @@ export default function Connexion() {
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Connexion
         </h2>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-gray-700 font-medium">Identifiant</label>
@@ -42,6 +80,7 @@ export default function Connexion() {
               value={formData.username}
               onChange={handleChange}
               className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
+              required
             />
           </div>
           <div>
@@ -53,6 +92,7 @@ export default function Connexion() {
               value={formData.password}
               onChange={handleChange}
               className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
+              required
             />
           </div>
           <div className="flex items-center justify-between">
@@ -72,9 +112,10 @@ export default function Connexion() {
           </div>
           <button
             type="submit"
-            className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-lg"
+            disabled={loading}
+            className={`w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            Se connecter
+            {loading ? "Connexion en cours..." : "Se connecter"}
           </button>
         </form>
       </div>
